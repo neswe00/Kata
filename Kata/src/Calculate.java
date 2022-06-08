@@ -21,13 +21,17 @@ public class Calculate {
             String input_data = sc.nextLine();
             List<String> input_data_list = Arrays.asList(input_data.split(" "));
 
+//            if (input_data_list.size() > 3){
+//                throw new Exception( " The operation is incorrect");
+//            }
+            check_input_size(input_data_list);
+
+
             operation = input_data_list.get(1);
             num1 = input_data_list.get(0);
             num2 = input_data_list.get(2);
             is_arabic_or_roman = is_arabic_or_roman(num1, num2);
             check_input_number(num1, num2, is_arabic_or_roman);
-
-
 
 
             switch (operation) {
@@ -49,6 +53,13 @@ public class Calculate {
         }
 
     }
+
+    public static void check_input_size (List<String> input_data_list) throws Exception {
+        if (input_data_list.size() > 3){
+            throw new Exception( " The operation is incorrect");
+        }
+    }
+
 
 
 
@@ -110,12 +121,15 @@ public class Calculate {
     }
 
     static int is_available_result(int arabic_number) throws Exception {
-        if (arabic_number < 0) {
-            throw new Exception("The result of calculations of Roman numbers cannot be negative");
+        if (arabic_number < 1) {
+            throw new Exception("The result of calculations of Roman numbers cannot be negative or 0");
         }
 
         return arabic_number;
     }
+
+
+
 
     static String addition(String num1, String num2, boolean is_arabic) {
         return is_arabic
